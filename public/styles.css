@@ -1,0 +1,349 @@
+/* --- Global Styles & Resets --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+}
+
+/* === Authentication Form Styles (from before) === */
+.AuthForm-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.AuthForm {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.AuthForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.AuthInput {
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.AuthInput::placeholder {
+    color: #999;
+}
+
+.AuthInput:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.btt-submit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btt-submit:hover {
+    background-color: #0056b3;
+}
+
+/* === NEW: Dashboard Styles === */
+
+/* --- Main Layout --- */
+.dashboard {
+    display: grid;
+    grid-template-columns: 240px 1fr; /* Sidebar width | Main content */
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    background-color: #111827; /* Dark gray */
+    color: #d1d5db; /* Light gray text */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+}
+
+.sidebar__header {
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid #374151; /* Medium gray */
+}
+
+.sidebar__logo {
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.sidebar__nav {
+    flex-grow: 1;
+    margin-top: 1.5rem;
+}
+
+.sidebar__nav ul {
+    list-style: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #374151; /* Medium gray */
+    color: white;
+}
+
+.nav-item.active {
+    background-color: #007bff;
+    color: white;
+    border-left: 3px solid #60a5fa; /* Lighter blue accent */
+    padding-left: calc(1.5rem - 3px);
+}
+
+.sidebar__footer {
+    padding: 1rem 0;
+    border-top: 1px solid #374151;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    background-color: #f4f7f9;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+/* Main Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.main-header__title h2 {
+    font-size: 1.75rem;
+    color: #111827;
+}
+
+.main-header__title p {
+    color: #6b7280; /* Medium gray */
+    font-size: 1rem;
+}
+
+.main-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-bar {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    min-width: 250px;
+}
+
+.action-button {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-weight: 600;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.stat-card__title {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card__change {
+    font-weight: 500;
+}
+
+.stat-card__change.positive {
+    color: #10b981; /* Green */
+}
+
+.stat-card__change.negative {
+    color: #ef4444; /* Red */
+}
+
+/* --- Widgets Area --- */
+.widgets-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.widget {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.widget__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.widget__header h4 {
+    font-size: 1.1rem;
+}
+
+.widget__link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.chart-placeholder {
+    height: 250px;
+    background-color: #e9ecef;
+    display: grid;
+    place-items: center;
+    color: #6b7280;
+    border-radius: 8px;
+}
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.data-table th, .data-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table thead th {
+    font-weight: 600;
+    color: #6b7280;
+    background-color: #f9fafb;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: inline-block;
+}
+
+.status.shipped {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status.processing {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status.cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        /* In a real app, the sidebar would become a toggleable menu */
+        display: none; 
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .main-content {
+        padding: 1.5rem;
+    }
+}
