@@ -1,12 +1,50 @@
 
+import React, {useState} from 'react';
+import axios from 'axios';
+
+
 function LoginForm(){
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    async function handleSubmit(event){
+        event.preventDefault();
+        setMessage('');
+
+        try{
+            const response = await axios.post('http://localhost:5001/api/login',{
+                username: username,
+                password: password
+            }); 
+            
+            setMessage(response.data.message);
+            console.log("Succesful");
+        }catch(error){
+            if(error.response){
+                setMessage(error.response.data.error);
+            }else{
+                setMessage('Network error. Is the server running?');
+            }
+        }
+    }
+
+    function changeUsername(event){
+        setUsername(event.target.value);
+    }
+
+    function changePassword(event){
+        setPassword(event.target.value);
+    }
+
+
     return(<div className="AuthForm">
             <h1>Login</h1>
             <form>
-                <input className="AuthInput"   type="text" name="username" placeholder="Username" />
-                <input className="AuthInput" type="password" name="password" placeholder="Password" />
+                <input className="AuthInput"   type="text" name="username" placeholder="Username" onChange={changeUsername}/>
+                <input className="AuthInput" type="password" name="password" placeholder="Password" onChange={changePassword}/>
             </form>
-            <button className="btt-submit">Submit</button>
+            <button className="btt-submit" onClick={handleSubmit}>Submit</button>
         </div>)
 }
 
