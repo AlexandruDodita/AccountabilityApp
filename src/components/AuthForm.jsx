@@ -2,9 +2,10 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import {useState} from 'react';
 
+
 function AuthForm(){
-    // return (userExists ? <LoginForm /> : <RegisterForm /> );
     const [isUserRegistered, setIsUserRegistered] = useState('true');
+    
 
     function toggleForm(){
         if (isUserRegistered==="true"){

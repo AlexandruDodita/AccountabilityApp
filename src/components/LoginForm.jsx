@@ -1,12 +1,13 @@
 
 import React, {useState} from 'react';
 import axios from 'axios';
-
+import {useAuth} from '../context/AuthContext';
 
 function LoginForm(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const { login } = useAuth();
 
     async function handleSubmit(event){
         event.preventDefault();
@@ -18,7 +19,9 @@ function LoginForm(){
                 password: password
             }); 
             
-            setMessage(response.data.message);
+            login(response.data.token, response.data.user);
+
+            // setMessage(response.data.message);
             console.log("Succesful");
         }catch(error){
             if(error.response){
@@ -45,6 +48,7 @@ function LoginForm(){
                 <input className="AuthInput" type="password" name="password" placeholder="Password" onChange={changePassword}/>
             </form>
             <button className="btt-submit" onClick={handleSubmit}>Submit</button>
+            {message && <p style={{ color: message.includes('successful') ? 'green' : 'red' }}>{message}</p>}
         </div>)
 }
 

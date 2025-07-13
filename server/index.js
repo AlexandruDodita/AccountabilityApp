@@ -7,7 +7,7 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 const SALT_ROUNDS = 10;
 
 
@@ -65,8 +65,20 @@ app.post('/api/register', async (req,res) => {
 
     const newUser = await pool.query(
       'INSERT INTO users (username, email, "phoneNumber", password_hash) VALUES ($1, $2, $3, $4) RETURNING id, username', [username, email, phoneNumber, passwordHash]);
+    
+      const user = newUser.rows[0];
 
-    res.status(201).json(newUser.rows[0]);
+      const token=jwt.sign(
+        {id: user.id, username: user.username },
+        process.env.JWT_SECRET,
+        {expiresIn: '2h'}
+      );
+
+    res.status(201).json({
+      message: 'Registration succesful!',
+      token: token,
+      user: user
+    });
   }catch(error){
     console.error('Error during registeration', error);
     res.status(500).json({error: 'User registration failed.'});
@@ -92,8 +104,15 @@ app.post('/api/login', async(req,res) => {
       return res.status(401).json({error: 'Invalid username or password.'});
     }
 
+    const token=jwt.sign(
+      {is: user.id, username: user.username},
+      process.env.JWT_SECRET,
+      {expiresIn: '2h'}
+    )
+
     res.status(200).json({
       message: 'Login succesful!',
+      token: token,
       user: {
         id: user.id,
         username: user.username,

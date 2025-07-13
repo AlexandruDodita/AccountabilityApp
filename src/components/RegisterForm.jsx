@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-
+import { useAuth } from '../context/AuthContext';
 
 function RegisterForm(){
     const [username, setUsername] = useState('');
@@ -9,6 +9,7 @@ function RegisterForm(){
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('')
     const [message, setMessage] = useState('');
+    const {login} = useAuth();
 
 
     async function handleSubmit(event){
@@ -29,7 +30,7 @@ function RegisterForm(){
                 // console.log(`Logged in user: ${response.data.user}`);
 
                 setUsername(''); setEmail(''); setPhoneNumber(''); setPassword('');  setConfirmedPassword('');
-
+                login(response.data.token, response.data.user);
             }else{
                 setMessage("Passwords don't match!")
             }
