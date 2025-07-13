@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
 
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 
@@ -46,6 +47,11 @@ app.use(express.json());
 //     res.status(500).json({ error: 'Internal server error' });
 //   }
 // });
+
+
+app.get('/', () =>{
+  
+});
 
 app.post('/api/register', async (req,res) => {
   const {username,email, phoneNumber, password} = req.body;
