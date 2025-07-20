@@ -13,7 +13,8 @@ function WidgetsArea(){
                     </select>
                 </div>
                 <div className="widget__body">
-                    <div className="chart-placeholder">Chart Goes Here</div>
+                    <div className="chart-placeholder">Chart Goes Here</div> {// TODO REPLACE WITH DYNAMIC CHART LOADING
+                                                                            }
                 </div>
             </div>
 
@@ -26,37 +27,26 @@ function WidgetsArea(){
                     <table className="data-table">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Customer</th>
-                                <th>Amount</th>
+                                <th>Task</th>
+                                <th>Difficulty</th>
+                                <th>Score</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#87F34</td>
-                                <td>Jane Cooper</td>
-                                <td>$250.00</td>
-                                <td><span className="status shipped">Shipped</span></td>
+                                <td>Do the dishes</td>
+                                <td>Medium</td>
+                                <td>70</td>
+                                <td><span className="status shipped">Completed</span></td>
                             </tr>
                             <tr>
-                                <td>#91A2B</td>
-                                <td>John Doe</td>
-                                <td>$135.50</td>
-                                <td><span className="status processing">Processing</span></td>
+                                <td>Placeholder Task </td>
+                                <td>Placeholder Dif</td>
+                                <td>99</td>
+                                <td><span className="status processing">In course</span></td>
                             </tr>
-                            <tr>
-                                <td>#44C8F</td>
-                                <td>Cody Fisher</td>
-                                <td>$89.99</td>
-                                <td><span className="status shipped">Shipped</span></td>
-                            </tr>
-                            <tr>
-                                <td>#19B45</td>
-                                <td>Robert Fox</td>
-                                <td>$450.75</td>
-                                <td><span className="status cancelled">Cancelled</span></td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
