@@ -1,7 +1,7 @@
-
+import ContributionCalendar from "./ContributionCalendar";
 
 function CalendarComponent(){
-    return (<h1>This is a test placeholder for CalendarComponent</h1>);
+    return (<ContributionCalendar />);
 }
 
 export default CalendarComponent;
